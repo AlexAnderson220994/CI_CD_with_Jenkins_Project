@@ -5,6 +5,8 @@
 
 ## Creating a Jenkins Environment Diagram
 
+![Alt text](<images/Jenkins Env Diagram.jpg>)
+
 ## Creating a VPC to run Jenkins
 
 1) Go to the VPC Console on AWS.
@@ -26,6 +28,9 @@ sudo apt install openjdk-11-jdk
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# Input this command
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
 
 # Update the package manager again
 sudo apt update
