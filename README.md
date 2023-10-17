@@ -30,6 +30,7 @@
 - Port 22 (SSH)
 - Port 80 (HTTP)
 - Port 8080 (Jenkins)
+![Alt text](<images/2_creating_jenkins_env/1. SG.jpg>)
 8) Click `Launch Instance`
 
 ### Install the dependencies
@@ -71,9 +72,11 @@ sudo systemctl enable jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ````
 15) On "Customise Jenkins", either choose "Install Suggested" OR "Select plugins"
+![Alt text](<images/2_creating_jenkins_env/2. customise Jenkins.jpg>)
 16) If you choose "Select", make sure to select office connector and NodeJs as a must.
 17) Either log in as admin or make a profile to log in with a new password.
-
+![Alt text](<images/2_creating_jenkins_env/3. jenkins homepage.jpg>)
+18) You are now on the Jenkins Homepage
 
 ## Building the CI/CD Pipeline in Jenkins
 
