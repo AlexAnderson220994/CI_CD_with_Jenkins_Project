@@ -19,7 +19,16 @@
 ## Creating a Jenkins Environment
 
 1) Go to the EC2 Console on AWS.
-2) In the left hand pane on the console, click on `Instances`, then make a new instance
+2) In the left hand pane on the console, click on `Instances`, then make a new instance.
+3) Give the Instance a name e.g. `tech254-alex-jenkins-server`.
+4) Select Ubuntu 20.04 lts (free tier eligible) as the AMI.
+5) Choose the SSH key pair.
+6) Select the VPC you made for Jenkins and select `Public Subnet` and choose `Enable` for the Public IP.
+7) Make a Security Group that allows for:
+- Port 22 (SSH)
+- Port 80 (HTTP)
+- Port 8080 (Jenkins)
+8) Click `Launch Instance`
 
 ````
 # Update the package manager
@@ -55,6 +64,17 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## Building the CI/CD Pipeline in Jenkins
 
+### 1) Make a Webhook on GitHub
+
+1) Go to your GitHub Profile.
+2) Select the repo containing the app folder.
+3) Go to settings on that repo.
+4) On the left hand pane, select `Webhooks`
+5) Select `Add webhook`
+6) Input the Public URL of the Jenkins with `/github-webhook/` added to the end.
+
+### 1) Creating a job
+
 1) To create a new job on Jenkins:
 - In the left hand pane, click on `New item`.
 - Enter an item name for the job you're (something relatable) e.g. `alex-1-CI`.
@@ -68,33 +88,20 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 4)  Also in "General", limit the number of previous builds that can be kept so you don't end up with loads of jobs and crash the system
 - Scroll down until you're in the "Build" tab and run commands to test out what the OS environment is and if Jenkins can run it.
 ssh-keygen -t rsa -b 4096 -C your.email@here.comgit
-
-### 1) Setting up CI job for 'dev' branch
-
-1) On the Configuration settings for the CI job(job 1)
-2) Go to "Source code management":
+5) Go to "Source code management":
 - Under "Branches to build", change this from `*/main` to `*/dev`
-![Alt text](<images/Git Merge/Screenshot 2023-10-12 113240.jpg>)
-3) Under "Post build actions"
+6) Under "Post build actions"
 - Choose your merge job (Heading 2)
 - Press `Trigger only if build is stable`
-![Alt text](<images/Git Merge/Screenshot 2023-10-12 113339.jpg>)
 
-### 2) Setting up Merge job
-
-![Alt text](<images/Git Merge/Screenshot 2023-10-12 113459.jpg>)
-![Alt text](<images/Git Merge/Screenshot 2023-10-12 113550.jpg>)
-![Alt text](<images/Git Merge/Screenshot 2023-10-12 113637.jpg>)
-![Alt text](<images/Git Merge/Screenshot 2023-10-12 113708.jpg>)
-
-### 3) Change repo from main to dev on Gitbash
+### 2) Change repo from main to dev on Gitbash
 
 1) `cd` into the folder for the Repo you're working with
 2) Input the command `git branch dev` to create a dev branch within this repo.
 3) Change to the dev branch from the main branch with the command `git checkout dev`.
 4) The command from point 3 also works to change back to main.
 
-### 4) Push from dev branch
+### 3) Push from dev branch
 
 1) Make sure you're on the 'dev' branch on your gitbash terminal.
 2) Do the `git add` and `git commit` for any files you've made changes to.
