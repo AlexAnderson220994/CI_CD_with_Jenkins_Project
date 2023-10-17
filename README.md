@@ -84,21 +84,27 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 1) Go to your GitHub Profile.
 2) Select the repo containing the app folder.
+- Make sure your SSH public key is connected in Deploy Keys
+![Alt text](<images/images 2/deploy keys.jpg>)
 3) Go to settings on that repo.
 4) On the left hand pane, select `Webhooks`
 5) Select `Add webhook`
 6) Input the Public URL of the Jenkins with `/github-webhook/` added to the end.
+![Alt text](<images/3_creating_CICD_pipeline/add webhook on github.jpg>)
+![Alt text](<images/images 2/deploy keys.jpg>)
 
 ### 1) Creating a job
 
 1) To create a new job on Jenkins:
 - In the left hand pane, click on `New item`.
 - Enter an item name for the job you're (something relatable) e.g. `alex-1-CI`.
+![Alt text](<images/images 2/Screenshot 2023-10-11 123233.jpg>)
 - Choose the project type, in this case `Freestyle project`.
 - Click `OK`.
 2) Add a description under the "General" tab.
 3) Under "Office 365 Connector"
 - Restrict where the project can be run.
+![Alt text](<images/images 2/office 365.jpg>)
 5) Under "Source code management", select `Git`
 6) In "repo URL", paste in your SSH URL for your Github Repo
 4)  Also in "General", limit the number of previous builds that can be kept so you don't end up with loads of jobs and crash the system
