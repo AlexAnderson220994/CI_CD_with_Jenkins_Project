@@ -18,6 +18,8 @@
 
 ## Creating a Jenkins Environment
 
+### Make the Instance for Jenkins
+
 1) Go to the EC2 Console on AWS.
 2) In the left hand pane on the console, click on `Instances`, then make a new instance.
 3) Give the Instance a name e.g. `tech254-alex-jenkins-server`.
@@ -30,6 +32,11 @@
 - Port 8080 (Jenkins)
 8) Click `Launch Instance`
 
+### Install the dependencies
+
+9) SSH into your instance using GitBash
+10) Do `sudo apt update` and `sudo apt upgrade -y`.
+11) Run the following commands to install the correct versions of Java and Jenkins:
 ````
 # Update the package manager
 sudo apt update
@@ -57,10 +64,16 @@ sudo systemctl start jenkins
 # Enable the Jenkins service
 sudo systemctl enable jenkins
 ````
-
+12) Once this has been done successfully, copy the Public IP and paste into the URL search bar on google.
+13) Add `:8080` at the end to access the Jenkins Port.
+14) Do the command below on your Jenkins instance in GitBash to get the password to log in.
 ````
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ````
+15) On "Customise Jenkins", either choose "Install Suggested" OR "Select plugins"
+16) If you choose "Select", make sure to select office connector and NodeJs as a must.
+17) Either log in as admin or make a profile to log in with a new password.
+
 
 ## Building the CI/CD Pipeline in Jenkins
 
